@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "name": "Validação Pós-Tarefa",
+  "description": "Ao concluir uma tarefa de spec, executa os portões de qualidade da constituição e bloqueia o avanço se algum falhar.",
+  "version": "1",
+  "when": {
+    "type": "taskCompleted",
+    "patterns": [
+      ".kiro/specs/**/tasks.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A tarefa marcada como concluída precisa passar pelos portões de qualidade do Artigo III da constituição antes de ser considerada pronta.\n\nExecute, nesta ordem, e pare no primeiro que falhar:\n1. Lint e formatação.\n2. Type check.\n3. Suíte de testes relacionada ao escopo alterado.\n\nDepois, verifique manualmente:\n- O comportamento descrito no requisito rastreado pela tarefa é observável de fato?\n- Existe verificação automatizada cobrindo esse comportamento? Se não existir, a tarefa NÃO está concluída.\n- A documentação afetada foi atualizada?\n\nSe algum portão falhar: reverta a marcação da tarefa para '[ ]' em tasks.md, relate o comando exato que falhou com sua saída, e proponha a correção mínima. Não prossiga para a próxima tarefa.\n\nSe tudo passar: confirme em uma linha quais portões foram executados e mantenha a tarefa marcada.\n\nOs comandos concretos deste projeto estão definidos no Artigo III de #[[file:../constitution.md]] — use-os em vez de adivinhar."
+  }
+}

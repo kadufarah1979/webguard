@@ -1,0 +1,20 @@
+{
+  "enabled": false,
+  "name": "Varredura de Segurança Pré-Escrita",
+  "description": "Antes de aceitar escrita em código-fonte, revisa o conteúdo contra as classes de risco do OWASP Top 10 e a Cláusula Pétrea da constituição.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.py",
+      "src/**/*.go"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Revise o arquivo que acabou de ser modificado exclusivamente sob a ótica de segurança. Não comente estilo, formatação ou arquitetura.\n\nVerifique, nesta ordem:\n1. Segredos: chaves, tokens, senhas, connection strings ou credenciais em literal — inclusive em testes e fixtures.\n2. Injeção: SQL/NoSQL/comando/template concatenando entrada não confiável em vez de usar parametrização.\n3. Validação de entrada: dados externos consumidos sem validação no limite do sistema.\n4. Autorização: acesso a recurso sem verificação de permissão no servidor, por recurso.\n5. Exposição de dados: stack trace, query, caminho de arquivo ou detalhe de infraestrutura vazando em resposta ou log.\n6. Criptografia: algoritmo obsoleto, hash de senha sem salt/KDF adequado, aleatoriedade não criptográfica em contexto de segurança.\n7. Dependência nova: introduzida sem justificativa registrada.\n\nPara cada achado, informe: severidade (crítica/alta/média/baixa), a linha exata, por que é explorável e a correção mínima. Se nada for encontrado, responda apenas 'Sem achados de segurança.' — não invente problemas para parecer útil."
+  }
+}
