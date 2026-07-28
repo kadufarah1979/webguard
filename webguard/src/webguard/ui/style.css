@@ -33,10 +33,11 @@ entry, .url-entry {
 
 entry:focus, .url-entry:focus {
     border-color: #00FF41;
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+    outline-color: rgba(0, 255, 65, 0.3);
+    outline-width: 2px;
 }
 
-entry:invalid {
+entry.error {
     border-color: #FF3E3E;
 }
 
@@ -53,7 +54,7 @@ button.scan-button {
 }
 
 button.scan-button:hover {
-    box-shadow: 0 0 16px rgba(0, 255, 65, 0.4);
+    background-color: #33FF6A;
 }
 
 button.scan-button:disabled {
@@ -71,7 +72,7 @@ button.cancel-button {
 }
 
 button.cancel-button:hover {
-    box-shadow: 0 0 16px rgba(255, 62, 62, 0.4);
+    background-color: #FF5E5E;
 }
 
 /* === Cards / Panels === */
@@ -158,25 +159,13 @@ button.cancel-button:hover {
 .mode-passive { color: #00D4FF; font-weight: bold; }
 .mode-active { color: #FF3E3E; font-weight: bold; }
 
-/* === Animations === */
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
+/* === Animations (GTK4 compatible) ===
+/* Note: GTK4 CSS does not support @keyframes.
+   Animations are handled programmatically via GLib.timeout_add */
 
-@keyframes pulse {
-    0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 65, 0.2); }
-    50% { box-shadow: 0 0 16px rgba(0, 255, 65, 0.5); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.blink { animation: blink 0.8s step-end infinite; }
-.pulse { animation: pulse 2s ease-in-out infinite; }
-.fade-in { animation: fadeIn 0.3s ease-out; }
+.blink { opacity: 0.5; }
+.pulse { }
+.fade-in { }
 
 /* === Scrollbar === */
 scrollbar {

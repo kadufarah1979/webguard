@@ -9,7 +9,7 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Adw, Gio, Gtk  # noqa: E402
+from gi.repository import Adw, Gdk, Gio, Gtk  # noqa: E402
 
 from webguard.ui.window import WebGuardWindow  # noqa: E402
 
@@ -53,7 +53,7 @@ class WebGuardApp(Adw.Application):
                 css_provider.load_from_path(str(css_file))
 
         Gtk.StyleContext.add_provider_for_display(
-            win_display := Gtk.Settings.get_default(),  # type: ignore
+            Gdk.Display.get_default(),
             css_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
