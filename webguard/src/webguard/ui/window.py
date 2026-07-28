@@ -249,6 +249,13 @@ class WebGuardWindow(Adw.ApplicationWindow):
         # Importar analyzers para registrar no registry
         import webguard.analyzers.passive.headers  # noqa: F401
         import webguard.analyzers.passive.fingerprint  # noqa: F401
+        import webguard.analyzers.passive.tls_check  # noqa: F401
+        import webguard.analyzers.passive.dns_info  # noqa: F401
+        import webguard.analyzers.passive.cookies_check  # noqa: F401
+        import webguard.analyzers.passive.robots_sitemap  # noqa: F401
+        import webguard.analyzers.passive.emails_contacts  # noqa: F401
+        import webguard.analyzers.passive.source_leaks  # noqa: F401
+        import webguard.analyzers.passive.forms_endpoints  # noqa: F401
 
         # Iniciar scan
         self._controller.start_scan(
