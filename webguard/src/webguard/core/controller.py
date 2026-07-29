@@ -147,7 +147,10 @@ class ScanController:
             record = result
 
             # Fase 2: Executar analisadores
+            # Modo ativo roda passivos + ativos; passivo roda só passivos
             analyzers = get_analyzers(mode.value)
+            if mode == Mode.ACTIVE:
+                analyzers = get_analyzers("passive") + get_analyzers("active")
             total = len(analyzers)
 
             for i, entry in enumerate(analyzers):

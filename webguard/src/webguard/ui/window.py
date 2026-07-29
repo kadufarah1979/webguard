@@ -256,6 +256,7 @@ class WebGuardWindow(Adw.ApplicationWindow):
         import webguard.analyzers.passive.emails_contacts  # noqa: F401
         import webguard.analyzers.passive.source_leaks  # noqa: F401
         import webguard.analyzers.passive.forms_endpoints  # noqa: F401
+        import webguard.analyzers.active.sqli  # noqa: F401
 
         # Iniciar scan
         self._controller.start_scan(
