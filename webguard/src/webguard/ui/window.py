@@ -257,6 +257,11 @@ class WebGuardWindow(Adw.ApplicationWindow):
         import webguard.analyzers.passive.source_leaks  # noqa: F401
         import webguard.analyzers.passive.forms_endpoints  # noqa: F401
         import webguard.analyzers.active.sqli  # noqa: F401
+        import webguard.analyzers.active.xss  # noqa: F401
+        import webguard.analyzers.active.cmdi  # noqa: F401
+        import webguard.analyzers.active.traversal  # noqa: F401
+        import webguard.analyzers.active.ssti  # noqa: F401
+        import webguard.analyzers.active.open_redirect  # noqa: F401
 
         # Iniciar scan
         self._controller.start_scan(
